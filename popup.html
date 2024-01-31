@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Highlighter</title>
+  <link rel="stylesheet" href="popup.css">
+
+  <style>
+    :root {
+    --bg-color: #081b29;
+    --secondary-bg-color: #112e42;
+    --text-color: #E0FFFF;
+    --main-color: #00FA9A;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    height: 500px;
+    width: 500px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.highlight_container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.popup-container {
+    text-align: center;
+}
+
+.header {
+    background-color: var(--secondary-bg-color);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--main-color);
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ccc;
+}
+
+ h1 {
+     text-align: start;
+     margin-bottom: 20px;
+ }
+
+ label {
+     display: block;
+     margin-bottom: 10px;
+ }
+
+ input[type="text"] {
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 20px;
+     color: whitesmoke;
+     background-color: #112e42;
+     border: 1px solid var(--main-color);
+     border-radius: 5px;
+     box-sizing: border-box;
+ }
+
+ .result {
+     margin-top: 20px;
+     padding: 20px;
+     background-color: var(--secondary-bg-color);
+     border-radius: 5px;
+ }
+
+ .result h2 {
+     margin-bottom: 10px;
+ }
+
+ .scrap_center {
+    align-items: center;
+    justify-content: center;
+ }
+
+.text-animate {
+     position: relative;
+     width: 32.8rem;
+ }
+
+.text-animate h3 {
+     font-size: 1.2rem;
+     font-weight: 700;
+     color: transparent;
+     -webkit-text-stroke: .7px var(--main-color);
+     background-image: -webkit-linear-gradient(var(--main-color));
+     background-image: linear-gradient(var(--main-color), var(--main-color));
+     background-repeat: no-repeat;
+     -webkit-background-clip: text;
+     background-clip: text;
+     background-position: 0 0;
+
+ }
+.text-animate h3 {
+     animation: homeBgText 6s linear infinite;
+     animation-delay: 1s;
+ }
+
+ @keyframes homeBgText {
+
+     0%,
+     10%,
+     100% {
+         background-position: -33rem 0;
+     }
+
+     65%,
+     85% {
+         background-position: 0 0;
+     }
+ }
+
+ .scraper_container {
+     text-align: center;
+     border: #112e42 3px solid;
+ }
+  </style>
+</head>
+<body>
+  <section class="highlight_container">
+  <div class="popup-container">
+    
+    <div class="header">
+      <div class="text-animate">
+      <h3>Product Highlighter</h3>
+    </div>
+    </div>
+    <div class="main-content">
+      <label class="switch">
+        <input type="checkbox" id="toggleHighlightingCheckbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+</section>
+<section class="scraper_container">
+  <div class="text-animate">
+  <h3 class="header">Product Info Scraper</h3>
+  </div>
+    <label for="product_url">Enter Product URL:</label>
+    <div class="scrap_center">
+    <input type="text" id="product_url" required>
+    <button id="scrape_button">Scrape</button>
+    </div>
+    <div class="result" id="result_section" style="display: none;">
+        <h2>Product Title:</h2>
+        <p id="product_title"></p>
+        <h2>Product MRP:</h2>
+        <p id="product_mrp"></p>
+        <h2>Product Category:</h2>
+        <p id="product_category"></p>
+        <h2>Offer Percentage:</h2>
+        <p id="percentage"></p>
+        <h2>Selling Price:</h2>
+        <p id="product_selling_price"></p>
+        
+    </div>
+</section>
+  <script src="popup.js"></script>
+</body>
+</html>

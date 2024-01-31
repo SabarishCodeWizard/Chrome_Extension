@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Product Highlighter",
+  "version": "1.0",
+  "description": "Highlights product details and price on ecommerce websites",
+  "icons": {
+    "128": "/images/highlighter.png"
+  },
+  "permissions": ["activeTab", "storage","tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "128": "/images/highlighter.png"
+    },
+    "default_popup": "popup.html"
+  },
+    "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "popup.html",
+          "popup.js"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
+      }
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "host_permissions": [
+    "http://localhost:5000/"
+  ]
+}
