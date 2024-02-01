@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function displayResult(result) {
   console.log('Response received:', result);
-  if (result && result.product_title && result.product_mrp && result.product_category && result.product_selling_price && result.percentage) {
+  if (result && result.product_title && result.product_mrp && result.product_category && result.product_selling_price && result.percentage && result.msg) {
     console.log('Displaying result:', result);
     document.getElementById('result_section').style.display = 'block';
     document.getElementById('product_title').textContent = result.product_title;
@@ -43,6 +43,7 @@ function displayResult(result) {
     document.getElementById('product_category').textContent = result.product_category;
     document.getElementById('product_selling_price').textContent = result.product_selling_price;
     document.getElementById('percentage').textContent = result.percentage;
+    document.getElementById('msg').textContent = result.msg;
   } else {
     console.error('Invalid result received:', result);
     // Handle the error, e.g., display a message to the user
